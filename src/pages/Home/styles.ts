@@ -46,6 +46,11 @@ const BaseInput = styled.input`
     &::placeholder {
         color: ${(props) => props.theme["gray-500"]};
     }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
 `;
 
 export const TaskInput = styled(BaseInput)`
@@ -110,5 +115,13 @@ export const StartCountdownButton = styled.button`
 
     &:not(:disabled):hover {
         background: ${(props) => props.theme["green-700"]};
+    }
+`;
+
+export const StopCountdownButton = styled(StartCountdownButton)`
+    background: ${(props) => props.theme["red-500"]};
+
+    &:not(:disabled):hover {
+        background: ${(props) => props.theme["red-700"]};
     }
 `;
