@@ -21,11 +21,11 @@ export function Countdown() {
   useEffect(() => {
     let interval: number
 
-    if (activeCycle) {
+    if (activeCycle ) {
       interval = setInterval(() => {
         const secondsDifference = differenceInSeconds(
           new Date(),
-          activeCycle.startDate,
+          new Date(activeCycle.startDate),
         )
 
         if (secondsDifference >= totalSeconds) {
@@ -36,12 +36,20 @@ export function Countdown() {
           setSecondsPassed(secondsDifference)
         }
       }, 1000)
-    }
-
-    return () => {
-      clearInterval(interval)
-    }
-  }, [activeCycle, totalSeconds, activeCycleId, markCycleAsFinished])
+      }
+      
+      return () => {
+          clearInterval(interval)
+        }
+    }, [activeCycle, totalSeconds, activeCycleId, markCycleAsFinished])
+    useEffect(() => {
+        if (activeCycleId !== null) {
+        document.title = `${minutes}:${seconds}`
+        }
+        else {
+            document.title = "Pomodoro App"
+        }
+    }, [minutes, seconds, activeCycle, activeCycleId])
 
   return (
     <CountdownContainer>
